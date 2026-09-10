@@ -1,0 +1,6 @@
+decscli
+decscli.exe
+*.o
+*.obj
+__pycache__/
+z*
