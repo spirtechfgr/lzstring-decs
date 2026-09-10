@@ -41,7 +41,8 @@ enum {
     kDecsErrMemory   = 29305    // realloc failed, or the array would exceed 32760 bytes with a 16-bit size_t
 };
 
-// consumer of the decompressed text, one character per call; non-zero aborts and is returned
+// consumer of the decompressed text, one character per call; non-zero aborts and is returned,
+// so it must stay outside 29300..29305, the diagnostics
 typedef int32_t (*tDecsConsumer)(void *inContext, uint16_t inChar);
 
 // decompression state: bit reader (the next bit at bit 31 of fAcc, then a sentinel
@@ -193,7 +194,7 @@ static inline int32_t decsRun(struct tDecs *inS, tDecsConsumer inConsumer, void 
 
 // Decompresses inSize bytes at inCompressed, delivering the text to inConsumer one
 // character per call with inContext. Returns 0 on success, the consumer's non-zero
-// value, or a kDecsErr* diagnostic.
+// value, or a kDecsErr* diagnostic; the caller tells them apart by the consumer's choice of values.
 static inline int32_t decs(const uint8_t *inCompressed,   // compressed data
                            int32_t        inSize,         // its size in bytes, k
                            tDecsConsumer  inConsumer,     // receives the decompressed text

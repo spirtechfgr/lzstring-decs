@@ -85,7 +85,7 @@ static inline int32_t decs(const uint8_t *inCompressed,  // compressed data
                            void          *inContext);    // passed unchanged to inConsumer
 ```
 
-The two pointers are not checked for NULL. `decs` outputs the decompressed text through `inConsumer`, one character per call, in order, as a `uint16_t` holding the character value *y*. When `inConsumer` returns a non-zero value, `decs` stops at once and returns that value; characters already delivered stay delivered.
+The two pointers are not checked for NULL. `decs` outputs the decompressed text through `inConsumer`, one character per call, in order, as a `uint16_t` holding the character value *y*. When `inConsumer` returns a non-zero value, `decs` stops at once and returns that value; characters already delivered stay delivered. That value must stay outside 29300…29305, the diagnostics below, or the caller could not tell the two apart.
 
 `decs` returns 0 on success (end symbol reached), the consumer's non-zero value, or one of the diagnostics below.
 

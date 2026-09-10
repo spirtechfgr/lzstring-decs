@@ -155,8 +155,12 @@ int main(int argc, char *argv[])
 #ifdef _WIN32
     _setmode(_fileno(stdout), _O_BINARY);
 #endif
-    int32_t vRc = decs(vData, vSize, emit, stdout);   // the diagnostic
+    int32_t vRc = decs(vData, vSize, emit, stdout);   // the diagnostic, or 1 from emit
     if (fflush(stdout) == EOF) vRc = 1;
+    if (vRc == 1) {
+        fputs("write error\n", stderr);
+        return 1;
+    }
     if (vRc != 0) {
         fprintf(stderr, "%d\n", (int)vRc);
         return 1;
