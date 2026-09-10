@@ -4,7 +4,7 @@
 
 The code aims at correctness, interoperability, moderate RAM usage, clarity, and then only speed.
 
-#### Bytes allocated for the dictionary against the compressed size, over the 1000 known answer tests:
+#### Bytes allocated for the dictionary, and decompressed size, against the compressed size, over the 1000 known answer tests:
 
 ![dictionary bytes allocated versus compressed size, over the known answer tests](dictsize.png)
 
