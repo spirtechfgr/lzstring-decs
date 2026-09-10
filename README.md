@@ -2,7 +2,7 @@
 
 `decs` is a header-only C 2011 decompressor for lz-string. It is equivalent to conversion from bytes to UTF-16 per Little-Endian without Byte Order Mark convention, followed by decompression per LZString.decompressFromUTF16, then clamping every character to the range [32…127]. It is believed compatible with the output of all LZString.compressToUTF16 implementations followed by conversion from UTF-16 to bytes per said convention.
 
-The code aims at correctness, interoperability, moderate RAM usage, clarity, and then only speed.
+The code aims at correctness, interoperability, moderate RAM usage, speed and clarity.
 
 #### Bytes allocated for the dictionary, and decompressed size, against the compressed size, over the 1000 known answer tests:
 
